@@ -81,7 +81,7 @@ A string that defines a temporary output directory for generated .key and .spc f
 
 For example:
 
-```json
+```js
 options: {
 	certificateOutput: 'store/gen_'
 }
