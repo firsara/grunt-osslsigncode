@@ -1,0 +1,49 @@
+{
+  "name": "grunt-osslsigncode",
+  "description": "Codesign Application with osslsigncode utility based on a .pfx or .p12 certificate",
+  "version": "0.1.0",
+  "homepage": "https://github.com/firsara/grunt-osslsigncode",
+  "author": "Fabian Irsara <info@fabianirsara.com> (http://fabianirsara.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firsara/grunt-osslsigncode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/firsara/grunt-osslsigncode/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jsonlint": "^1.0.4"
+  },
+  "peerDependencies": {
+    "grunt": "^0.4.5"
+  },
+  "keywords": [
+    "gruntplugin",
+    "osslsigncode",
+    "codesign",
+    "sign"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "license": "MIT"
+}
