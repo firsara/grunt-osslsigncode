@@ -26,6 +26,7 @@ exports.osslsigncode = {
     // setup here if necessary
     done();
   },
+
   load: function(test){
     test.expect(6);
 

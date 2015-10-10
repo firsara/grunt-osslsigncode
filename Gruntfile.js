@@ -9,16 +9,25 @@
 
 module.exports = function(grunt){
 
+  var jsFiles = [
+    'Gruntfile.js',
+    'tasks/*.js',
+    '<%= nodeunit.tests %>'
+  ];
+
   grunt.initConfig({
     jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
-      ],
+      all: jsFiles,
       options: {
-        jshintrc: '.jshintrc',
+        jshintrc: '.jshintrc'
+      }
+    },
+
+    jscs: {
+      options: {
+        config: '.jscsrc'
       },
+      src: jsFiles
     },
 
     jsonlint: {
@@ -28,21 +37,17 @@ module.exports = function(grunt){
     },
 
     clean: {
-      tests: ['tmp', 'bin-out'],
+      tests: ['tmp', 'bin-out']
     },
 
     nodeunit: {
-      tests: ['test/test_*.js'],
+      tests: ['test/test_*.js']
     },
 
     watch: {
       jshint: {
-        files: [
-          'Gruntfile.js',
-          'tasks/*.js',
-          '<%= nodeunit.tests %>',
-        ],
-        tasks: ['jshint']
+        files: jsFiles,
+        tasks: ['jshint', 'jscs']
       },
       jsonlint: {
         files: ['package.json'],
@@ -51,20 +56,20 @@ module.exports = function(grunt){
       test: {
         files: [
           'tasks/*.js',
-          '<%= nodeunit.tests %>',
+          '<%= nodeunit.tests %>'
         ],
-        tasks: ['jshint', 'test']
+        tasks: ['test']
       }
     },
 
     osslsigncode: {
       msi: {
         options: {
-          certificate: 'cert.p12',
+          certificate: 'certificate.pfx',
           password: 'your_password',
           certificateOutput: 'tmp/cert_',
-          sign: 'in-app.exe',
-          output: 'out-app.exe',
+          sign: 'bin/app.msi',
+          output: 'bin-out/app.signed.msi',
           timestamp: 'http://timestamp.globalsign.com/scripts/timestamp.dll',
           name: 'App Name',
           url: 'http://www.example.com'
@@ -80,9 +85,10 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-jscs');
   grunt.loadNpmTasks('grunt-jsonlint');
 
   grunt.registerTask('test', ['clean', 'osslsigncode', 'nodeunit']);
-  grunt.registerTask('default', ['jsonlint', 'jshint', 'test']);
+  grunt.registerTask('default', ['jsonlint', 'jshint', 'jscs', 'test']);
 
 };
