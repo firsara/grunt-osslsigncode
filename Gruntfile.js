@@ -60,10 +60,14 @@ module.exports = function(grunt){
     osslsigncode: {
       msi: {
         options: {
-          certificate: 'certificate.pfx',
+          certificate: 'cert.p12',
+          password: 'your_password',
           certificateOutput: 'tmp/cert_',
-          sign: 'bin/app.msi',
-          output: 'bin-out/app.signed.msi'
+          sign: 'in-app.exe',
+          output: 'out-app.exe',
+          timestamp: 'http://timestamp.globalsign.com/scripts/timestamp.dll',
+          name: 'App Name',
+          url: 'http://www.example.com'
         }
       }
     }

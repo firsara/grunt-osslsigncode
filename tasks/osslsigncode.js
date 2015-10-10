@@ -51,7 +51,9 @@ module.exports = function(grunt){
     });
   };
 
-  var generateCertificate = function(source, target, callback){
+  var generateCertificate = function(options, callback){
+    var source = options.certificate;
+    var target = options.certificateOutput;
     if (! (grunt.file.exists(target + 'output.key') && grunt.file.exists(target + 'output.spc'))) {
       var directory = path.dirname(target);
       if (directory !== '.') {
@@ -60,16 +62,18 @@ module.exports = function(grunt){
 
       var commands = [];
 
+      var command_password_arg = (options.password) ? ' -password pass:'+options.password : '';
+
       commands.push(
         'openssl pkcs12' +
         ' -in ' + source + ' -nocerts -nodes' +
-        ' -out ' + target + 'tmp_key.pem'
+        ' -out ' + target + 'tmp_key.pem' + command_password_arg
       );
 
       commands.push(
         'openssl pkcs12' +
         ' -in ' + source + ' -nokeys -nodes' +
-        ' -out ' + target + 'tmp_cert.pem'
+        ' -out ' + target + 'tmp_cert.pem' + command_password_arg
       );
 
       commands.push(
@@ -99,14 +103,18 @@ module.exports = function(grunt){
       certificate: 'certificate.pfx',
       certificateOutput: 'tmp/certificate_',
       sign: null,
-      output: null
+      output: null,
+      password: null,
+      timestamp: 'http://timestamp.verisign.com/scripts/timstamp.dll',
+      name: null,
+      url: null
     });
 
     if (! options.sign) {
       throw new Error('option "sign" not set. specify a target file that should be signed (*.exe, *.msi, ...)');
     }
 
-    generateCertificate(options.certificate, options.certificateOutput, function(){
+    generateCertificate(options, function(){
       var commands = [];
 
       var out = options.output ? options.output : options.sign + '.out';
@@ -116,11 +124,16 @@ module.exports = function(grunt){
         grunt.file.mkdir(directory);
       }
 
+      var command_password_arg = (options.password !== undefined) ? ' -pass '+options.password : '';
+      var command_name_arg = (options.name) ? ' -n \"'+options.name+'\"' : '';
+      var command_url = (options.url) ? ' -n \"'+options.url+'\"' : '';
+
       commands.push(
         'osslsigncode' +
         ' -spc ' + options.certificateOutput + 'output.spc' +
         ' -key ' + options.certificateOutput + 'output.key' +
-        ' -t http://timestamp.verisign.com/scripts/timstamp.dll' +
+        command_password_arg + command_name_arg + command_url +
+        ' -t ' + options.timestamp +
         ' -in ' + options.sign +
         ' -out ' + out
       );
