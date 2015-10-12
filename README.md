@@ -58,7 +58,11 @@ grunt.initConfig( {
 				certificate: 'path/to/certificate.pfx', // path to your .pfx or .p12 certificate
 				certificateOutput: 'path/to/tmp/output_', // prefix to a temporary output directory for generated certificates
 				sign: 'path/to/app.exe', // path to your executable that should be signed
-				output: 'path/to/signed.app.exe' // (optional) path to your signed exe
+				output: 'path/to/signed.app.exe', // (optional) path to your signed exe
+				password: 'your_password', // (optional) certificate password
+        timestamp: 'http://timestamp.globalsign.com/scripts/timestamp.dll', // (optional) url where timestamp should be fetched from
+        name: 'App Name', // (optional) your app's name
+        url: 'http://www.example.com' // (optional) author's url of app
 			}
 		},
 	},
