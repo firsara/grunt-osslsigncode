@@ -115,5 +115,33 @@ Optional
 
 An optional string that defines the output of the signed executable file. If not set overwrites the original executable file defined in `options.sign`.
 
+#### options.password
+Type: `String`
+Default value: `null`
+Optional
+
+An optional string that defines the password stored inside the certificate. If defined no password prompt is shown while generating .key and .spc files.
+
+#### options.timestamp
+Type: `String`
+Default value: `"http://timestamp.verisign.com/scripts/timstamp.dll"`
+Optional
+
+An optional string that defines the a url where the timestamp for signing the application should be fetched from.
+
+#### options.name
+Type: `String`
+Default value: `null`
+Optional
+
+An optional string that defines the app's name.
+
+#### options.url
+Type: `String`
+Default value: `null`
+Optional
+
+An optional string that defines the author's url of the app.
+
 ## License
 Copyright (c) 2015 Fabian Irsara (<a href="http://fabianirsara.com">http://fabianirsara.com</a>). Licensed under the MIT license.
