@@ -60,9 +60,9 @@ grunt.initConfig( {
 				sign: 'path/to/app.exe', // path to your executable that should be signed
 				output: 'path/to/signed.app.exe', // (optional) path to your signed exe
 				password: 'your_password', // (optional) certificate password
-        timestamp: 'http://timestamp.globalsign.com/scripts/timestamp.dll', // (optional) url where timestamp should be fetched from
-        name: 'App Name', // (optional) your app's name
-        url: 'http://www.example.com' // (optional) author's url of app
+				timestamp: 'http://timestamp.globalsign.com/scripts/timestamp.dll', // (optional) url where timestamp should be fetched from
+				name: 'App Name', // (optional) your app's name
+				url: 'http://www.example.com' // (optional) author's url of app
 			}
 		},
 	},
