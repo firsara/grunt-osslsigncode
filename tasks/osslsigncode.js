@@ -121,7 +121,7 @@ module.exports = function(grunt){
 
       var out = options.output ? options.output : options.sign + '.out';
 
-      var directory = path.dirname(options.output);
+      var directory = path.dirname(out);
       if (directory !== '.') {
         grunt.file.mkdir(directory);
       }
