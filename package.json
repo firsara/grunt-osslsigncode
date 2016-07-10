@@ -1,7 +1,7 @@
 {
   "name": "grunt-osslsigncode",
   "description": "Codesign Application with osslsigncode utility based on a .pfx or .p12 certificate",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/firsara/grunt-osslsigncode",
   "author": "Fabian Irsara <info@fabianirsara.com> (http://fabianirsara.com)",
   "repository": {
