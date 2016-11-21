@@ -145,3 +145,4 @@ An optional string that defines the author's url of the app.
 
 ## License
 Copyright (c) 2015 Fabian Irsara (<a href="http://fabianirsara.com">http://fabianirsara.com</a>). Licensed under the MIT license.
+
